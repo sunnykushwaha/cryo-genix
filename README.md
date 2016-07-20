@@ -14,41 +14,41 @@ Here is the example code in which the devices are named as led, so don't get con
 And please do add the IR library before compiling the program else it will dispaly an error.
 
 
-#include <IRremote.h>
-int RECV_PIN = 11; 
-int led1 = 2;
-int led2 = 3;
-int led3 = 4;
-int led4 = 5;
+ #include <IRremote.h>
+ int RECV_PIN = 11; 
+ int led1 = 2;
+ int led2 = 3;
+ int led3 = 4;
+ int led4 = 5;
 
 
 
-int itsONled[] = {0,0,0,0,0,};
-#define code1   20655
-#define code2   55335 
-#define code3   63495 
-#define code4   12495 
+ int itsONled[] = {0,0,0,0,0,};
+ #define code1   20655
+ #define code2   55335 
+ #define code3   63495 
+ #define code4   12495 
 
-IRrecv irrecv(RECV_PIN);
+ IRrecv irrecv(RECV_PIN);
  
-decode_results results;
+ decode_results results;
  
-void setup()
-{
-  Serial.begin(9600);   
-  irrecv.enableIRIn();  
-  pinMode(led1, OUTPUT);
-  pinMode(led2, OUTPUT);
-  pinMode(led3, OUTPUT);
+ void setup()
+ {
+   Serial.begin(9600);   
+   irrecv.enableIRIn();  
+   pinMode(led1, OUTPUT);
+   pinMode(led2, OUTPUT);
+   pinMode(led3, OUTPUT);
    pinMode(led4, OUTPUT);
     
    
-  }
+   }
  
 void loop() {
-  if (irrecv.decode(&results)) {
-    unsigned int value = results.value;
-    switch(value) {
+     if (irrecv.decode(&results)) {
+     unsigned int value = results.value;
+     switch(value) {
        case code1:
          if(itsONled[1] == 1) {       
             digitalWrite(led1, LOW);   
